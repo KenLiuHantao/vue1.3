@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件地址验证</title>
+    <style>*{padding:0;margin:0;box-sizing:border-box}html{font-family:"PingFang SC", "Microsoft YaHei"}body{padding:40px 20px;background-color:#f5f5f5}a{text-decoration:none}ul{list-style:none}.clear{zoom:1}.clear:before,.clear:after{content:"";display:table}.clear:after{clear:both}.header{padding-bottom:30px;color:#03a9f4;font-size:26px;font-weight:300}.main p{font-size:14px;line-height:28px}.main .content{padding:40px 30px;background-color:#fff}.main .content-title{padding-bottom:25px;font-size:16px;font-weight:bold}.main .about-title{padding-bottom:40px}.main .about-way,.main .about-phone,.main .about-email{position:relative;padding-left:20px}.main .about-way i,.main .about-phone i,.main .about-email i{position:absolute;left:0;display:block;width:14px;height:14px}.main .about-phone,.main .about-email{color:#666;font-size:12px;font-weight:300;line-height:24px}.main .about-way i{top:7px;width:4px;background-color:black;border-radius:2px}.main .about-phone i{top:5px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAABGdJREFUSA29Vl1oHFUUPufObJLZTamiRm0i6pOFomJKIBZEQtEHobXSZoSC+CL4UO2LL5WmaFFEpEjxQRB9E4RsEk3xF39SJf5EVJqADw1YrbpJ2mCrbbOzMTszx+9Mcrezs0lsWvHA7j0/3z3n3jPn3nuYLoFyg+W7JKYdJHIP4O3CvEGnscg0hiliHmVDw9VdhWOqX414NaNTDHYxxc+L0G2r4ayNmSaFTF/k5wetLjsuG7ClWLk1lPgtIenOTrgUmYnHXDa7533vlyy+IaBbrNwrFA2R0DVZ8JpkpjNMzs7Q975Iz6sLmAST+BMiyaVBl89zldnclw5aC6hprFL03RXvLLs67DRHTpdNr2vt+s3Ar5xG5hCLKWGFp1CeAbCCOvXw1wb+JlRws/VVN+LThJT4vlv1yQ61GknigTrgonAelfcGGfq4rbkwOr2NNVADbSpK06Qz301RvFVEHgfg+gYQm16t3iSgW5w73lD6TP15r/DEhW38h53sFYP2kOP7cSbvEGLHEI07TWZk/iHvpMVcV5TWsxK8gAQ8aXU66pEJ/daNnBsqd8ah/FBv5Pf7evPbn2WOVb/hXcnPBpVn4KTHsDlsHB7D+VxYiGUzDv9e5GlinRQO/unzOevH6S+/DvxjVtYR8zqNRPRgWqk8u7LfBlv/nlw9Wwk+RVpNn5/vJmMmwih6tBrRXhbzF1a9lWNz8oIEI4UjUktlC8sBbAuf+CLpbcVu/9wItD0X1VwN/XwzA7z5e8lN/Bx8iR18EPYWDjqD5R0UUz8KpMnikaqnEfTFXHHuEfjZ1+YVuuy3dorl34HtqGGJjuIzULtVLI6Syw9Ukrty4kT5JehKGgzFgCzKa+lgise3fM4bCjqqfuubED48XQleUf0tR6UFw1XKp6jdTS5iVEyaFki+dYvlX3G1bWoh2RjC6A3P3wyHegTqScRdiKgTytINXDgwQ8GPmHukNBvciOW0psEaS3fYSCLt2NEWpPVQ2W89pYCO5pYZfN1qIxjFQPKb6ks+VxzhPszdjsV2NWJFzNIT02gjns9L/lVr+OkB/hsLOGxlO0L3EdI5buUtbd4AiqVk5fSIEprRHU6llZZHMXx23uezVtaxr9fbh7vxKQQZh/04G3OozcvvTGM+70lupHfSuhQ/5WI1oyiEVJUumYW+TgETdumovAxBfwlNWyY1OsxfRVJ/8BMzYuEc03AKW2Oxg9M1YY1M7PDsclM0ltG2AM4nswAcgtr5ydr+TeYoapirMTRWUqXaFmSdoNL2LL6PCL0Gyr09dycO2f7sFBuj5sztL3+zbEvBdA4glL3ek7IAR1HGmS4aNw+vwyJ1Z9dm7LioeCx8uJA8T7X3UHuQZR9gofVY8e16p6xOK9jxALtkdodLk5OUKq8vsvYgKx3u1YOtZEWLAZ/2tVdULaAK2ntoD4IcnFH5ikibqEw/o/7qAqpCg2oPonlX+XJI56qPdPNk/dSKxirS4//WCKeDKv9ftvr/AFmCyYRDpz86AAAAAElFTkSuQmCC);background-size:cover}.main .about-email i{top:5px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAA4VJREFUSA21VktPFEEQruppFnbWi0aNgh6MevHgwQckioqJojERNMD6uHnw4k/QC1Hx7N2DF18MSFyNJEp8ggcfBzXGg8GbbDQaX2FnWZjusnrdJruzs+ui2JBU91df1Uf3VFeDUMNo8LKrFFInaWoFhEYCaOQwjQRpEjQhAB9JgTezXe6HP6XDagTpTe0GUGeJqLkaz/oQ4RE44lTQ5T6xWNhGCrqpTON0Di6yUHs4oJY1Ig654B7/mcSvYX6ZYN31zGYdwA0AMsf2DwPfOyg7ppP1b4uTlAjWDfotWtMDIIoXk/56jvDDgbotxaKzgnHPb5oGesFiy/5aIDIQ3yfQbbbHKyxnBvTl+Rcz2Wm1D/4Fq5PfoTOY2Q+Kblrwf1iUotVUrzTJUdE5vltlg8t8BFEMg+afGgYhcD46yNXdWkZXuo+xNowN5tYrNfOqjADwZdvSxPKHOzGI8FWElni04Cv4n/jzuGFSTIqVQqugM+worBePffYfSy9b/tdWCJADk+3fwB+NEjMhgaYO7krUFhXPH/cd49+J1Kj0MqmYl1sXxTMY390Nsn9yhDTc4eU4IE5EcTXQDlOlTVFO7pmfgmRiHwpnO/sXKwheO/2ZC6YLWb7psY43eVkreGEw4eBmjulBoO+WU2yRcIUsNOJi/PecIF9HQU98lIGtppJRU18uh+OyP3OeiyPOV+kEAr5kqV3Bofj98iSlCCdcLoGQdxlVo6Vk1Z241Ut0+5w3dVShPs0vxRQf3ZGgxx0qZVZdCYlIaSJYW5VWcPYimutxiYWvGKiwLnj/bLgu0uYemg9ck6BNOVchG8cHmRZ8pGOzwH+eoMAxgQ6kKugsqoBXhbnLIP8ujCI5hCl2EsoB/x1f1jURpGsCYRjRqa21gXI4XRfn7Ajn4kf5GV+Zlnzzjg34h5XWV8Ok+VwjyvYg2TCSFzS7rBvwn7HdNJ8iNhfv7i7vbo9Z599DBsgB5wivv1nS/FlMx+rhmM03+wDnkg3j3MZ6+DLP6XWwiSItYlZIOOB3JtLWPytoAG5j9/j928vTf98p4kchcOdMV+K5FTO2RNAARlSibOZjzjdkg811mP9PY4CbZrrdp+HYfNGEQbM2hVQ/mD2kiM5UuDJlYZzsDTl40vTdMmcBqChoA4xw7Lq/kRR08ttpHuMmhhp5rjnYfJsJ7lYPhSNT0931r21cJfsLlXlTxsY1dR4AAAAASUVORK5CYII=);background-size:cover}.main .comment{padding:20px 30px;background-color:#efefef}.main .comment p{font-size:12px;line-height:24px}.main .comment-answer{font-weight:300}.footer{padding:20px 0 0 30px;color:#9b9ca0;font-size:12px}.verify-email .content-code{padding:0 10px;color:#03a9f4;font-size:24px}</style>
+</head>
+<body class="verify-email">
+
+    <h1 class="header">请验证您的邮件地址</h1>
+
+    <div class="main">
+        <div class="content">
+            <p>尊敬的班鹏飞，您好！</p>
+            <p style="padding-bottom: 30px">感谢您注册 "我的经管" 企业账号。</p>
+
+            <p>您正在进行邮箱验证，请在验证码输入框中输入此验证码<span class="content-code">090619</span>以完成验证。</p>
+            <p style="padding-bottom: 80px">此验证码24小时内有效，超出24小时未进行验证，需要重新申请注册。</p>
+
+            <div class="about">
+                <p class="about-title">我的经管 产品团队敬上</p>
+                <p class="about-way"><i></i>联系我们</p>
+                <p class="about-phone"><i></i>客服电话：0755-86965153</p>
+                <p class="about-email"><i></i>客服邮箱：huangty@ecworking.com</p>
+            </div>
+        </div>
+
+        <div class="comment">
+            <p>为什么我会收到这封邮件？</p>
+            <p class="comment-answer">您在注册我的经管企业账户时，填写了此邮箱地址，我们发送这封邮件给您以确认真实性，如果您没有注册，请忽略此邮件。</p>
+        </div>
+    </div>
+
+    <p class="footer">此为系统邮件，请勿回复 © 云集智造 2015-2017</p>
+
+</body>
+</html>
