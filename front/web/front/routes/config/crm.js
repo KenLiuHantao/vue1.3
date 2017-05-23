@@ -1,0 +1,37 @@
+module.exports = {
+    '/:systemType/customerAttributeCategory':{
+        key:'customerAttributeCategory',
+        title:'客户属性分类',
+        component(resolve){
+            require(['../../src/crm/customerAttributeCategory/app'],resolve)
+        }
+    },
+    '/:systemType/customerAttributeCategory':{
+        key:'customerAttributeCategory',
+        title:'客户属性分类',
+        component(resolve){
+            require(['../../src/crm/customerAttributeCategory/app'],resolve)
+        }
+    },
+    '/:systemType/affair':{
+        key:'affair',
+        title:'客户关系拓展管理',
+        component(resolve){
+            require(['../../src/crm/affair/app'],resolve)
+        }
+    },
+    '/:systemType/customer':{
+        key:'customer',
+        title:'新增客户档案',
+        component(resolve){
+            require(['../../src/crm/customer/app'],resolve)
+        }
+    },
+    '/:systemType/customerDevAndRelation':{
+        key:'customerDevAndRelation',
+        title:'客户开发与关系管理',
+        component(resolve){
+            require(['../../src/crm/customerDevAndRelation/app'],resolve)
+        }
+    },
+}

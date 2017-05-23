@@ -1,0 +1,157 @@
+<script>
+    import referWarehouse from '../referWarehouseForTransfer'
+
+    export default {
+        components: {
+            referWarehouse,
+        },
+        props: {
+            checks: Object
+        },
+        data() {
+            return {
+                warnConfig: {
+                    show: false,
+                    type: 'success',
+                    content: '保存成功'
+                },
+                docDateConfig: {
+                    placeholder: '请选择生产备料日期',
+                    format: 'YYYY-MM-DD',
+                    maxDate: '2100-01-01'
+                },
+                warhouseConfig: {
+                    code: 'warehouseCode',
+                    name: 'warehouseName'
+                },
+                validShow: {
+                    docDate: false
+                },
+                tableData: {header:{},dataList:{}},
+                lock: true
+            }
+        },
+        ready() {
+            this.$http.post(__URL.warehouse + 'material/prepare/query/selected', this.checks).then((res) => {
+                this.tableData = res.data.data;
+                this.lock = false;
+            });
+        },
+        methods: {
+            save() {
+                if(!this.lock) {
+                    this.lock = true;
+                    this.$http.post(__URL.warehouse + 'material/prepare/save', this.tableData).then((res) => {
+                        this.warnConfig.show = true;
+                        this.warnConfig.type = 'success';
+                        this.warnConfig.content = '保存成功';
+                        if(!res.data.success) {
+                            this.warnConfig.type = 'failure';
+                            this.warnConfig.content = res.data.errMsg;
+                        } else {
+                            this.$emit('refresh');
+                        }
+                        this.lock = false;
+                    });
+                }
+            },
+            cancel() {
+                this.$emit('close');
+            }
+        }
+    }
+
+</script>
+<template>
+    <div class="inner-wrapper">
+        <div class="inner-content">
+            <h2 class="tag">生产备料单信息</h2>
+            <div class="block">
+                <div class="inner-item form-box">
+                    <div class="form-group">
+                        <label>工序:</label>
+                        <p class="orderData">{{ tableData.header.processName }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>生产备料日期:</label>
+                        <date-picker :config="docDateConfig" :date.sync='tableData.header.docDate'></date-picker>
+                        <i class="error" v-show='validShow.docDate'>生产备料日期不能为空</i>
+                    </div>
+                    <div class="form-group">
+                        <label>仓库:</label>
+                        <refer-warehouse :data='tableData.header' :config="warhouseConfig"></refer-warehouse>
+                    </div>
+                    <div class="form-group">
+                        <label>备料员:</label>
+                        <p class="orderData">{{ tableData.header.employeeName }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>备料部门:</label>
+                        <p class="orderData">{{ tableData.header.departmentName }}</p>
+                    </div>
+                </div>
+
+                <div class="inner-item">
+                    <div class="form-group wd-100">
+                        <label>备注:</label>
+                        <input type="text" maxlength='120' v-model='tableData.header.remark'>
+                    </div>
+                </div>
+
+                <div class="inner-item">
+                    <tab-container>
+                        <tab-item>
+                            <table class='inner-table'>
+                                <thead>
+                                <tr>
+                                    <th width="5%">序号</th>
+                                    <th width="15%">货品信息</th>
+                                    <th width="10%">单位</th>
+                                    <th width="10%">应发数量</th>
+                                    <th width="10%">已发数量</th>
+                                    <th width="10%">备料数量</th>
+                                    <th width="10%">换算率</th>
+                                    <th width="10%">辅单位</th>
+                                    <th width="10%">辅数量</th>
+                                    <th width="10%">生产订单号</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for='item in tableData.dataList'>
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <div class="show-wrap">
+                                        <p><label>编码: </label><label>{{item.inventoryCode}}</label></p>
+                                        <p><label>名称: </label><label>{{item.inventoryName}}</label></p>
+                                        <p><label>型号: </label><label>{{item.inventorySpec}}</label></p>
+                                        </div>
+                                    </td>
+                                    <td>{{ item.unitName }}</td>
+                                    <td>{{ item.issueQuantity }}</td>
+                                    <td>{{ item.issuedQuantity }}</td>
+                                    <td><input-number  :code.sync='item.quantity' placeholder="请输入备料数量"></input-number></td>
+                                    <td>{{ item.conversionRate }}</td>
+                                    <td>{{ item.byUnitName }}</td>
+                                    <td>{{ item.byQuantity }}</td>
+                                    <td>{{ item.srcDocNo }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </tab-item>
+                    </tab-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner-footer">
+        <button @click='cancel' class="btn-xl-def">取消</button>
+        <button @click='save' class="btn-xl-imp">确定备料</button>
+    </div>
+
+    <warning :config="warnConfig"></warning>
+</template>
+
+<style lang='less' scoped>
+    @import '../../../../../public/css/variable.less';
+
+</style>

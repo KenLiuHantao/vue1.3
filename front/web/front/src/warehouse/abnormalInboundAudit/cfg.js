@@ -1,0 +1,100 @@
+export default {
+    leftItemCfg: {
+        headCfg: {
+            add: false,
+            filter: false
+        },
+        /*
+         * tab 配置
+         */
+        tabCfg: {
+            select: '',
+            tabBarData: [{
+                id: 'tab2',
+                name: '待审核',
+                icon: '',
+                params: {
+                    main: {
+                        key: 'yearWeek',
+                        url: __URL.warehouse + 'abnormal/inbound/query/weeks/unaudit',
+                        words: {
+                            title: ['week', '(', 'weekBeginDate', ' ~ ', 'weekEndDate', ')'],
+                            right: 'total'
+                        },
+                        param: {},
+                    },
+                    sub: {
+                        key: 'warehouseCode',
+                        url: __URL.warehouse + 'abnormal/inbound/query/warehouse/unaudit',
+                        words: {
+                            title: ['warehouseName'],
+                            right: 'total',
+                            sub: []
+                        },
+                        param: {
+                            'yearWeek': ''
+                        }
+                    }
+                }
+            }, {
+                id: 'tab3',
+                name: '已审核',
+                icon: '',
+                params: {
+                    main: {
+                        key: 'yearMonth',
+                        url: __URL.warehouse + 'abnormal/inbound/query/months/audit',
+                        words: {
+                            title: ['month'],
+                            right: 'total'
+                        },
+                        param: {},
+                    },
+                    sub: {
+                        key: 'warehouseCode',
+                        url: __URL.warehouse + 'abnormal/inbound/query/warehouse/audit',
+                        words: {
+                            title: ['warehouseName'],
+                            right: 'total',
+                            sub: []
+                        },
+                        param: {
+                            'yearMonth': ''
+                        }
+                    }
+                }
+            }]
+        },
+        /*
+         * list 配置
+         */
+        listCfg: {
+            hasNub: true,
+            hasChild: true,
+        },
+        /*
+         * filter 配置
+         */
+        filterCfg: []
+    },
+    unauditTableCfg: {
+        serial: true,
+        width: [5, 5, 5, 5], //排除序号，多选，单选，操作栏
+        match: [
+            [{key: 'docNo', href: true}],
+            'docDate',
+            'ioCategory'
+        ],
+        head: ['非正常入库单号', '入库日期', '收发类型']
+    },
+    auditTableCfg: {
+        serial: true,
+        width: [5, 5, 5, 5], //排除序号，多选，单选，操作栏
+        match: [
+            [{key: 'docNo', href: true}],
+            'docDate',
+            'ioCategory'
+        ],
+        head: ['非正常入库单号', '入库日期', '收发类型']
+    }
+}

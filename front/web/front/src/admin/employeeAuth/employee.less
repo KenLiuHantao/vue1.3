@@ -1,0 +1,93 @@
+@import '../../../../../public/css/variable.less';
+
+.pd-42 {
+  padding-bottom: 42px;
+}
+
+.bottom-line {
+  border-bottom: 1px solid @border-color;
+}
+
+.back-gray {
+  background-color: #f9f9f9;
+}
+
+.auth-wrap {
+  position: relative;
+  font-size: 12px;
+  margin-bottom: 10px;
+
+  .icon-up,.icon-down{
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    margin-left: 6px;
+  }
+  .icon-up{
+    border-bottom: 6px solid black;
+  }
+  .icon-down{
+    border-top: 6px solid black;
+  }
+  .auth-title, .banner {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+  }
+  .banner {
+    width: 100%;
+    justify-content: center;
+    background-color: #f9f9f9;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+  }
+  .list-wrap {
+    max-height: 400px;
+    overflow: auto;
+  }
+}
+
+.container-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 9px solid #F9F9F9;
+  padding: 5px 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &.had .role-title{
+    background-color:#CDCDCD ;
+  }
+  .role-title {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 8px;
+    background-color: #7ED321;
+    color: white;
+    border-radius: 22px;
+  }
+  .list {
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
+  .list-left {
+    height: 40px;
+    padding-left: 15px;
+    border-right: 1px solid @border-color;
+    cursor: pointer;
+  }
+  .list-right {
+    padding: 0 10px;
+
+    li {
+      margin: 10px 0;
+    }
+  }
+}
